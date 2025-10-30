@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Prep App</title>
+  <link rel="stylesheet" href="styles/tailwind.css" data-teda="tailwind-static" />
+    <link rel="stylesheet" href="styles/main.css">
+  </head>
+<body class="bg-slate-50 text-slate-900">
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-slate-900 text-white grid place-items-center">🖼️</div>
+        <span class="font-semibold tracking-tight">Privacy Prep</span>
+      </a>
+      <div class="flex items-center gap-3 text-sm">
+        <a href="#help" class="text-slate-600 hover:text-slate-900">Help</a>
+        <a href="index.html" class="inline-flex items-center gap-2 text-slate-700 hover:text-slate-900">
+          <span class="hidden sm:inline">Back to site</span>
+          <span aria-hidden>↗</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+    <div class="grid lg:grid-cols-[28rem,1fr] gap-6">
+      <!-- Controls -->
+      <aside class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-4 sm:p-6 border-b border-slate-200">
+          <h1 class="text-xl font-semibold">Clean a photo</h1>
+          <p class="text-sm text-slate-600 mt-1">Preview metadata, choose what to strip, then download a cleaned copy.</p>
+        </div>
+        <div class="p-4 sm:p-6 space-y-6">
+          <!-- Upload -->
+          <div>
+            <label class="block text-sm font-medium mb-2">Upload image</label>
+            <div id="dropzone" class="group relative border-2 border-dashed border-slate-300 hover:border-rose-400 rounded-xl p-6 text-center bg-slate-50/50 transition cursor-pointer">
+              <input id="file-input" type="file" accept="image/jpeg,image/png" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" aria-label="Choose image file">
+              <div class="space-y-2">
+                <div class="text-3xl">📁</div>
+                <p class="text-sm text-slate-600">Drop a JPEG or PNG here, or click to choose</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Presets -->
+          <div>
+            <label class="block text-sm font-medium mb-2">Quick presets</label>
+            <div class="flex flex-wrap gap-2">
+              <button id="preset-all" class="btn-chip" type="button">Strip all</button>
+              <button id="preset-safe" class="btn-chip" type="button">Safe share</button>
+              <button id="preset-keep-camera" class="btn-chip" type="button">Keep camera only</button>
+            </div>
+          </div>
+
+          <!-- Metadata toggles -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <label class="block text-sm font-medium">Fields to strip</label>
+              <button id="toggle-expand" class="text-xs text-slate-600 hover:text-slate-900" type="button">Collapse all</button>
+            </div>
+            <div id="toggles-wrap" class="space-y-3" aria-live="polite"></div>
+            <p id="toggle-hint" class="text-xs text-slate-500 mt-2">Tip: GPS and time are most sensitive.</p>
+          </div>
+
+          <!-- Output options -->
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label for="quality" class="block text-sm font-medium mb-1">JPEG quality</label>
+              <input id="quality" type="range" min="70" max="100" value="92" class="w-full" aria-label="JPEG quality">
+              <div class="flex justify-between text-[11px] text-slate-500 mt-1"><span>70</span><span id="quality-val">92</span><span>100</span></div>
+            </div>
+            <div>
+              <label for="format" class="block text-sm font-medium mb-1">Export format</label>
+              <select id="format" class="form-select" aria-label="Export format">
+                <option value="same">Same as input</option>
+                <option value="jpeg">JPEG</option>
+                <option value="png">PNG</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between">
+            <label class="inline-flex items-center gap-2 text-sm">
+              <input id="include-report" type="checkbox" class="form-checkbox">
+              <span>Include redaction report</span>
+            </label>
+            <label class="inline-flex items-center gap-2 text-sm">
+              <input id="remember-choices" type="checkbox" class="form-checkbox">
+              <span>Remember choices</span>
+            </label>
+          </div>
+
+          <div class="pt-2">
+            <button id="download-btn" class="w-full btn-primary" type="button" disabled>Download cleaned copy</button>
+            <p id="download-note" class="text-xs text-slate-500 mt-2">Selective keep supported for JPEG. PNG export strips all metadata.</p>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Preview and details -->
+      <section class="space-y-4">
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <h2 class="font-semibold">Preview</h2>
+              <span id="file-pill" class="hidden text-xs px-2 py-1 rounded-full bg-slate-100 text-slate-700"></span>
+            </div>
+            <div class="text-xs text-slate-500">
+              <span id="img-dim"></span>
+            </div>
+          </div>
+          <div class="p-4 sm:p-6">
+            <div class="relative bg-slate-100 rounded-xl overflow-hidden">
+              <div id="image-stage" class="grid place-items-center min-h-[280px] bg-slate-50">
+                <p class="text-slate-500 text-sm">No image yet. Choose a file to start.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-4">
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between">
+              <h3 class="font-semibold">Detected metadata</h3>
+              <span id="meta-count" class="text-xs text-slate-500">0 fields</span>
+            </div>
+            <div id="meta-before" class="p-4 sm:p-5 text-sm text-slate-700 space-y-1 max-h-64 overflow-auto" aria-live="polite"></div>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between">
+              <h3 class="font-semibold">After cleaning</h3>
+              <span id="meta-after-count" class="text-xs text-slate-500">0 fields</span>
+            </div>
+            <div id="meta-after" class="p-4 sm:p-5 text-sm text-slate-700 space-y-1 max-h-64 overflow-auto" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Help -->
+    <section id="help" class="mt-10 text-sm text-slate-600">
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-5">
+        <p>Tip: Orientation is applied to the preview and output, so you rarely need to keep the Orientation tag.</p>
+      </div>
+    </section>
+  </main>
+
+  
+
+  <!-- Scripts: required order -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/piexifjs"></script>
+  <script src="scripts/helpers.js"></script>
+  <script src="scripts/ui.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

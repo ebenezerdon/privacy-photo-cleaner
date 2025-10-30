@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Prep | Clean photo metadata before you share</title>
+  <meta name="description" content="Preview and remove photo metadata before sharing. Strip GPS, time, camera and more. Beautiful, simple, and fast.">
+  <link rel="stylesheet" href="styles/tailwind.css" data-teda="tailwind-static" />
+    <link rel="stylesheet" href="styles/main.css">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  
+</head>
+<body class="min-h-screen bg-gradient-to-b from-slate-50 to-slate-100 text-slate-900 selection:bg-rose-100 selection:text-rose-900">
+  <header class="max-w-7xl mx-auto px-6 pt-6 flex items-center justify-between">
+    <a href="#" class="flex items-center gap-3 group" aria-label="Privacy Prep home">
+      <div class="w-10 h-10 rounded-xl bg-slate-900 text-white grid place-items-center relative overflow-hidden">
+        <span class="text-lg">🖼️</span>
+      </div>
+      <span class="sr-only sm:not-sr-only font-semibold tracking-tight text-slate-900">Privacy Prep</span>
+    </a>
+    <nav class="hidden sm:flex items-center gap-6">
+      <a class="nav-link" href="#features">Features</a>
+      <a class="nav-link" href="#how">How it works</a>
+      <a class="nav-link" href="#faq">FAQ</a>
+      <a class="btn-secondary" href="app.html">Open the app</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero: asymmetric vertical layout with overlapping media stack -->
+    <section class="relative overflow-hidden">
+      <div class="absolute -top-24 right-0 w-[58vw] h-[58vw] max-w-[860px] rounded-full bg-rose-100 blur-3xl opacity-70 pointer-events-none"></div>
+      <div class="max-w-7xl mx-auto px-6 py-16 sm:py-24 lg:py-28">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-7 space-y-6 pr-0 lg:pr-8">
+            <span class="badge">Private by design</span>
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+              Scrub hidden data from photos
+              <span class="block text-rose-600">before you share</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-slate-600 max-w-2xl">
+              Preview exactly what your image reveals. Toggle GPS, time, camera and software fields, then download a cleaned copy in seconds. Everything runs in your browser.
+            </p>
+            <div class="flex flex-wrap gap-3 pt-2">
+              <a href="app.html" class="btn-primary">Start cleaning photos</a>
+              <a href="#features" class="btn-secondary">Explore features</a>
+            </div>
+            <div class="flex flex-wrap gap-3 pt-6">
+              <span class="chip">No uploads</span>
+              <span class="chip">Keeps image quality</span>
+              <span class="chip">Selective EXIF keep for JPEG</span>
+            </div>
+          </div>
+          <div class="lg:col-span-5 relative">
+            <div class="relative mx-auto w-full max-w-md">
+              <div class="rotate-2 origin-bottom-right rounded-3xl shadow-xl bg-white p-3 mb-4">
+                <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1080&auto=format&fit=crop" alt="Sample landscape" class="rounded-2xl object-cover h-56 w-full">
+              </div>
+              <div class="-rotate-3 origin-top-left rounded-3xl shadow-xl bg-white p-3 ml-8">
+                <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?q=80&w=1080&auto=format&fit=crop" alt="Sample city" class="rounded-2xl object-cover h-64 w-full">
+              </div>
+              <div class="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-lg border border-slate-100 p-4">
+                <p class="text-sm font-medium">Hidden data found</p>
+                <ul class="mt-2 text-sm text-slate-600 space-y-1">
+                  <li>• GPS coordinates</li>
+                  <li>• Time captured</li>
+                  <li>• Camera model</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="max-w-7xl mx-auto px-6 py-16">
+      <div class="grid gap-10 lg:grid-cols-3">
+        <div class="p-6 rounded-2xl bg-white shadow-sm border border-slate-200">
+          <div class="w-12 h-12 rounded-xl bg-rose-600 text-white grid place-items-center mb-4">🔎</div>
+          <h3 class="text-xl font-semibold mb-2">Deep metadata preview</h3>
+          <p class="text-slate-600">See EXIF, GPS, time and software info extracted from your photo in a friendly, readable layout.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white shadow-sm border border-slate-200">
+          <div class="w-12 h-12 rounded-xl bg-sky-600 text-white grid place-items-center mb-4">🎚️</div>
+          <h3 class="text-xl font-semibold mb-2">Toggle what to strip</h3>
+          <p class="text-slate-600">Choose exactly which fields to remove. Keep what you want for JPEGs, remove the rest with one click.</p>
+        </div>
+        <div class="p-6 rounded-2xl bg-white shadow-sm border border-slate-200">
+          <div class="w-12 h-12 rounded-xl bg-amber-500 text-white grid place-items-center mb-4">⚡</div>
+          <h3 class="text-xl font-semibold mb-2">Private and fast</h3>
+          <p class="text-slate-600">Runs fully in your browser. No uploads, no waiting, no tracking. Your photos never leave your device.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="how" class="bg-slate-900 text-white">
+      <div class="max-w-7xl mx-auto px-6 py-16">
+        <div class="max-w-3xl">
+          <h2 class="text-3xl font-bold mb-6">How it works</h2>
+          <ol class="space-y-5">
+            <li class="flex gap-4 items-start"><span class="px-3 py-1 rounded-lg bg-white text-slate-900 font-bold">1</span><p>Drop a photo into the app. We extract metadata locally and show a clean summary.</p></li>
+            <li class="flex gap-4 items-start"><span class="px-3 py-1 rounded-lg bg-white text-slate-900 font-bold">2</span><p>Toggle fields you want to strip. Use presets like Strip all or Safe share.</p></li>
+            <li class="flex gap-4 items-start"><span class="px-3 py-1 rounded-lg bg-white text-slate-900 font-bold">3</span><p>Download a cleaned copy. For JPEGs, you can keep selected non-sensitive fields.</p></li>
+          </ol>
+          <div class="mt-8">
+            <a href="app.html" class="btn-primary">Open the app</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="max-w-5xl mx-auto px-6 py-16">
+      <h2 class="text-3xl font-bold mb-8">Frequently asked questions</h2>
+      <div class="space-y-6">
+        <details class="group bg-white rounded-2xl border border-slate-200 p-5">
+          <summary class="font-semibold cursor-pointer list-none">Do you upload my photos?</summary>
+          <p class="mt-3 text-slate-600">No. All processing happens in your browser using JavaScript, so your images never leave your device.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-slate-200 p-5">
+          <summary class="font-semibold cursor-pointer list-none">Which files are supported?</summary>
+          <p class="mt-3 text-slate-600">JPEG and PNG images work best. Selective keep of metadata is supported for JPEG. PNG export strips textual metadata.</p>
+        </details>
+        <details class="group bg-white rounded-2xl border border-slate-200 p-5">
+          <summary class="font-semibold cursor-pointer list-none">Will image quality change?</summary>
+          <p class="mt-3 text-slate-600">The app re-encodes images to clean metadata. Quality is set high by default and you can change it in the app.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="max-w-7xl mx-auto px-6 py-10 text-sm text-slate-600">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <p>Built with care. Your privacy matters.</p>
+      <a href="app.html" class="btn-secondary">Start now</a>
+    </div>
+  </footer>
+</body>
+</html>
